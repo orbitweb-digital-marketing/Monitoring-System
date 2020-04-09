@@ -1,0 +1,256 @@
+/* CSS Document */
+body{
+	margin: 0 auto;
+	padding: 0;
+	color:#555555;
+	font-family:'Montserrat';
+	font-size:11px;
+	background:#FFFFFF;
+	height: 100% !important;
+	}
+input{
+	margin:1px;
+	}
+a{
+	color: #000000;
+	text-decoration:blink;
+	}
+a:hover{
+	text-decoration:underline;
+	cursor:pointer;
+	}
+
+.principal{
+	border-left:#666666 solid 1px;
+	border-right:#666666 solid 1px;
+	height: 100% !important;
+	position: absolute;
+	}
+.top_nav_bg{
+	vertical-align:middle !important;
+	vertical-align:top;
+	background:#FFFFFF url(images/top_nav_bg.jpg) top repeat-x;
+	height:53px;
+	font-size:small;
+	font-weight:bold;
+	padding-top:1.5em;
+	}
+
+
+
+.header{
+	background:#0194f3 url(images/header_bg.jpg) repeat-x;
+	height:179px;
+	}
+#header_spacer{
+	background-color:#000000;
+	height:6px;
+	}
+
+.header_bg{
+	background:#0194f3 url(images/left_header_bg.jpg) no-repeat top right;
+	height:180px;
+	width:614px;
+	}
+
+#navi{
+	background:#CCCCCC url(images/navi_bg.jpg) repeat-X;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-size:x-small;
+	text-align:center;
+	height:32px;
+	}
+.navi a{
+	background:url(images/navi_divider.jpg) top right no-repeat;
+	float:left;
+	height:22px;
+	color:#000000;
+	text-decoration:none;
+	padding-top:10px;
+	width:19%;
+	}
+.navi a:hover{
+	text-decoration:underline;
+	color:#0194f3;
+	}
+#leftpanel{
+	background:#FFFFFF url(images/left_panel_bg.jpg) top repeat-x;
+	width:20%;
+	vertical-align:center;
+	border-right:#999999 solid 1px;
+	height: 50px;
+	}
+
+#mainbody{
+	vertical-align:top;
+	padding-top:1em;
+	padding-left:3em;
+	padding-bottom:5em;
+	}
+.contenido{
+	padding-left:1em;
+	padding-top:2em;
+	padding-right:1em; /* for cross-browser's sake */
+	width:auto; 
+	margin-top: -20%;
+	}
+.contenido_header{
+	font-weight:bold;
+	color:#000000;
+	}
+.contenido_text{
+	background-color:#FFFFFF;
+	margin-top:20px;
+	padding-top:1em;
+	padding-right:.5em;
+	padding-left:.5em;		
+	padding-bottom:2em;
+	border:#999999 1px solid;
+	}
+.contenido_text a{
+	float:left;
+	text-decoration:none;
+	color:#003f7d;
+	font-weight:bold;
+	font-size:13px;
+	}
+.contenido_text a:hover{
+	float:left;
+	text-decoration:underline;
+	color:#0194f3;
+	font-weight:bold;
+	}
+#footer{
+	background-color: #0194f3;
+	height: 60px;
+	text-align:center;
+	color:#FFFFFF;
+	font-size:x-small;
+	font-weight:bold;
+	}
+.footer a{
+	text-decoration:none;
+	color:#FFFFFF;
+	}
+.footer a:hover{
+	text-decoration:underline;
+	color:#FFFFFF;
+	}
+/* mainbody */
+.headermain{
+	font-size:14px;
+	font-weight:bold;
+	border-bottom:#CCCCCC 1px solid;
+	color:#FF6600;
+	}
+#link_shopping{
+	text-align:right;
+	background:#FFFFFF url(images/bg_form_log.jpg) repeat-x;
+	height:38px;
+	padding-right:2em;
+	font-weight:bold;
+	}
+#welcome{
+	float:left;
+	padding-left:3em;
+	}
+.subtable{
+	padding:1px;
+	}
+
+.note{
+	font-size:x-small;
+	color:#FF6600;
+	font-weight:bold;
+	padding-top:.25em;
+	}
+.total{
+	height:30px;
+	color:#000000;
+	font-weight:bold;
+	background-color:#F8F8F8;
+	text-indent:.5em;
+	}
+.subheader{
+	font-weight: lighter;
+	font-size:small;
+	height:20px;
+	color: #000000;
+	text-align: center;
+	}
+
+	.p-encabezado{
+		color: #FFFFFF !important;
+		font-family:  'Montserrat';
+		text-align: center;
+		font-size: 25px !important;
+	}
+
+	.subtex{
+		font-size: 18px;
+	}
+
+	.check{
+		width: 25px;
+		height: 25px;
+		padding-left: 100px;
+	}
+
+	.tContent{
+		border: 1.5px #000000;
+	}
+
+	.hecho{
+		background-color: #0194f3;
+		color: white;
+		border: 1px solid black;
+		border-radius: 10px;
+		text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  margin: 4px 10px;
+  cursor: pointer;
+  padding: 5px 15px 5px 15px;
+	}
+
+	.hecho:hover{
+		background-color: #005892;
+		color: white;
+	}
+	.titulos{
+		font-family: 'Montserrat';
+		text-align: center !important;
+		font-size: 25px !important;
+		color: #000000;
+	}
+	.este:focus{
+		border: 3px solid #555;
+		padding: 5px 5px 5px 5px;
+	}
+	.este{
+		border-radius:10px ;
+	}
+
+	.cancel{
+		background-color: #0194f3;
+		color: white;
+		border: 1px solid black;
+		border-radius: 10px;
+		text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  margin: 4px 10px;
+  cursor: pointer;
+  padding: 5px 15px 5px 15px;
+	}
+	.cancel:hover{
+		background-color: #920000;
+		color: white;
+	}
+
+	.form-group{
+		padding-top: 5%;
+	}
