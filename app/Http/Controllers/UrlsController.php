@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Sitio;
-use Resources\Views\Email;
+use Mail;
 
 class UrlsController extends Controller
 {
@@ -21,14 +21,16 @@ class UrlsController extends Controller
     }
 
     public function SendEmail(Request $request){
+        //return $request;
         $to_name = 'OrbitWeb';
         $to_email = 'dev@orbitweb.ca';
         $data = array('name'=>'Zirok', 'body' => 'A test mail');
-        Mail::send('emails.mail', $data, function($message) use ($to_name, $to_email) {
+        Mail::send('Email.email', $data, function($message) use ($to_name, $to_email) {
         $message->to($to_email, $to_name)
         ->subject('Laravel Test Mail');
-        $message->from('Monitoring System by OrbitWeb','Test Mail');
+        $message->from('zirokguadron11@gmail.com','Test Mail');
         });
+        
     }
     /**
      * Show the form for creating a new resource.

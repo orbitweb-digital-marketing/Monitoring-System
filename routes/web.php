@@ -19,3 +19,7 @@ Route::get('/', function () {
 
 Route::resource('/url','UrlsController');
 Route::post('email','UrlsController@SendEmail')->name('urls.mail');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
