@@ -50,7 +50,17 @@ class UrlsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //return $request;
+        $sitios=Sitio::find($request->id);
+        //return $sitios;
+        //$sitios->update([
+          //  'name' => $request -> nombre, 
+            //'url'=> $request-> url
+        //]);
+        $sitios->nombre = $request->name;
+        $sitios->url = $request->url;
+        $sitios->save(); 
+        return back();
     }
 
     /**
@@ -58,7 +68,7 @@ class UrlsController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     */
+     */                                                   
     public function show($id)
     {
         //
