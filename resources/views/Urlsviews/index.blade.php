@@ -12,11 +12,12 @@
         display: none;
     }
 </style>
-<table class="table table-sm">
+<table class="table table-bordered">
     <thead>
         <tr>
-            <th scope="col">Name of Site</th>
+            <th scope="row">Name of Site</th>
             <th scope="col">Url of Site</th>
+            <th scope="col">Status</th>
             <th scope="col">Options</th>
         </tr>
     </thead>
@@ -28,12 +29,18 @@
         
         <th scope="row"> {{$sitio->nombre}}</th>
         <th>{{$sitio->url }}</th>
-        <th><button class="btn btn-danger">Delete</button>    <button onclick="edit_site('{{$sitio->id}}','{{$sitio->nombre}}','{{$sitio->url}}')" class="btn btn-primary">Edit</button></th>
-        
+        <th></th>
+        <th>
+            <button onclick="edit_site('{{$sitio->id}}','{{$sitio->nombre}}','{{$sitio->url}}')" class="btn btn-primary">Edit</button>
+            <form action="{{ route('urls.delsite') }}" method="post">
+                @csrf 
+                <input type="hidden" name="id" id="id" value="{{ $sitio->id }}"><button class="btn btn-danger" type="submit">Delete</button>
+            </form>
+        </th>
     </tr>@endforeach
 </table>    
 <div id="editpopup">
-    <form id="popup" action={{route('url.store')}} method="post">
+    <form id="popup" action={{route('urls.updsite')}} method="post">
         @csrf
         <input type="hidden" name="id" id="id">
         <input type="text" name="name" id="nameSite" placeholder="Name of Site">
@@ -41,15 +48,21 @@
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
+<button type="submit" class="btn btn-success" onclick="insert_site()">Insert new Site</button>
 <div id="insertpopup">
-    <form id="popup2" action="{{ route('url.create') }}" method="post">
+    <form id="popup2" action="{{ route('url.store') }}" method="post">
         @csrf
         <input type="text" name="name" id="NameSite" placeholder="New Name of Site">
         <input type="text" name="url" id="UrlSite" placeholder="Url of Site">
-        <button type="submit" class="btn btn-success">Insert</button>
+        <button type="submit">Insert</button>
     </form>
 </div>
-<form action="{{ route('urls.mail') }}" method="post">
+<div id="deletepopup">
+    <form id="popup3" action="" method="post">
+        <input type="hidden" name="id">
+    </form>
+</div>
+<form action="{{ route('urls.mail') }}" method="post" style="display: none">
     @csrf
     <input type="hidden" id="id" value="orbitweb" name="site">
     <button type="submit" class="primary">SEND</button>
@@ -67,11 +80,16 @@ function edit_site(id,name,url){
 }
 
 function insert_site(name,url){
+        //alert();
     var div = document.getElementById('insertpopup');
     div.style.display = 'block';
     $('#NameSite').val(name);
     $('#UrlSite').val(url);
-
 }
+
+function delete_site(id){
+    $('#id').val(id);
+}
+
 </script>
 @endsection

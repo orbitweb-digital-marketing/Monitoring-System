@@ -19,7 +19,8 @@ Route::get('/', function () {
 
 Route::resource('/url','UrlsController');
 Route::post('email','UrlsController@SendEmail')->name('urls.mail');
-
+Route::post('update','UrlsController@UpdateSite')->name('urls.updsite');
+Route::post('deletesite','UrlsController@DeleteSite')->name('urls.delsite');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
