@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,10 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/url','UrlsController');
-Route::post('email','UrlsController@SendEmail')->name('urls.mail');
-Route::post('update','UrlsController@UpdateSite')->name('urls.updsite');
-Route::post('deletesite','UrlsController@DeleteSite')->name('urls.delsite');
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('catalogo/sitio', 'SitioController');
+Route::resource('monitor/', 'MonitorController');
+Route::get('monitor/load/1', 'MonitorController@load');
