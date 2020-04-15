@@ -5,12 +5,27 @@ namespace monitor\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
+use Mail;
 
 class MonitorController extends Controller
 {
     public function __construct()
     {
     }
+
+    public function SendEmail(Request $request){
+        //return $request;
+        $to_name = 'OrbitWeb';
+        $to_email = 'dev@orbitweb.ca';
+        $data = array('name'=>'Zirok', 'body' => 'A test mail');
+        Mail::send('Email.email', $data, function($message) use ($to_name, $to_email) {
+        $message->to($to_email, $to_name)
+        ->subject('Test Mail');
+        $message->from('zirokguadron11@gmail.com','Test Mail');
+        });
+        //return 'joto';        
+    }
+
     public function index(Request $request)
     {
 
@@ -104,7 +119,7 @@ class MonitorController extends Controller
         //correo
         if( $offline ==0)
         {
-            //enviar correo
+            
         }
 
 

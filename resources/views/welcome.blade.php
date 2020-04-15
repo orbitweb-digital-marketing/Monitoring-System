@@ -72,7 +72,7 @@
                         <a href="{{ url('/home') }}">Home</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <!--<a href="{{ route('register') }}">Register</a>-->
                     @endauth
                 </div>
             @endif
@@ -82,10 +82,10 @@
                     <img src="{{asset('img/orbit2.png')}}" alt="OrbitWeb" style="width: 700px; heigth: 300px; align:center;">
                 </div>
 
-                <div class="links">
+                <!--<div class="links">
                     <a href="{{url('monitor')}}">Monitoreo</a>
                     <a href="{{url('catalogo/sitio')}}">Administracion de Sitios</a>
-                </div>
+                </div>-->
             </div>
         </div>
     </body>

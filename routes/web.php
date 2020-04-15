@@ -16,5 +16,9 @@ Route::get('/', function () {
 });
 
 Route::resource('catalogo/sitio', 'SitioController');
-Route::resource('monitor/', 'MonitorController');
+Route::resource('/monitor', 'MonitorController');
 Route::get('monitor/load/1', 'MonitorController@load');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
