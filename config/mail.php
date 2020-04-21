@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.googlemail.com'),
+    'host' => env('MAIL_HOST', 'localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 465),
+    'port' => env('MAIL_PORT', 25),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'zirokguadron11@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'dev@orbitweb.ca'),
         'name' => env('MAIL_FROM_NAME', 'Monitoreo de Sitios'),
     ],
 
@@ -71,7 +71,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('zirokguadron11@gmail.com'),
+    'username' => env(''),
 
-    'password' => env('zirokaxa9511'),
+    'password' => env(''),
 
     /*
     |--------------------------------------------------------------------------

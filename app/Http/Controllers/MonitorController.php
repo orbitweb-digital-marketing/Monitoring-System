@@ -13,19 +13,6 @@ class MonitorController extends Controller
     {
     }
 
-    public function SendEmail(Request $request){
-        //return $request;
-        $to_name = 'OrbitWeb';
-        $to_email = 'dev@orbitweb.ca';
-        $data = array('name'=>'Zirok', 'body' => 'A test mail');
-        Mail::send('Email.email', $data, function($message) use ($to_name, $to_email) {
-        $message->to($to_email, $to_name)
-        ->subject('Test Mail');
-        $message->from('zirokguadron11@gmail.com','Test Mail');
-        });
-        //return 'joto';        
-    }
-
     public function index(Request $request)
     {
 
@@ -41,7 +28,7 @@ class MonitorController extends Controller
                 $http_respond = curl_exec($ch);
                 $http_respond = trim(strip_tags($http_respond));
                 $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-                if (($http_code == "200") || ($http_code == "302")) {
+                if (($http_code == "200") || ($http_code == "302") || ($http_code == "301")) {
                     return true;
                 } else {
                     // return $http_code;, possible too
@@ -88,7 +75,7 @@ class MonitorController extends Controller
             $http_respond = curl_exec($ch);
             $http_respond = trim(strip_tags($http_respond));
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            if (($http_code == "200") || ($http_code == "302")) {
+            if (($http_code == "200") || ($http_code == "302") || ($http_code == "301")) {
                 return true;
             } else {
                 // return $http_code;, possible too
@@ -101,28 +88,42 @@ class MonitorController extends Controller
             ->orderBy('id', 'asc')
             ->get();
 
-        $i = 1;
-        $offline =1;
+	$i = 1;
         foreach ($query as $obj) {
             $sitios[$i][1] = $obj->nombre;
             $sitios[$i][2] = $obj->url;
-
+	$offline=5;
             if (url_test($obj->url) == true)
-                $sitios[$i][3] = '<button class="btn btn-success">on line</button>';
+                $sitios[$i][3] = '<button class="btn btn-success" type="button">Online</button>';
             else {
-                $offline =0;
-                $sitios[$i][3] = '<button class="btn btn-danger">off line</button>';
-            }
+		    $sitios[$i][3] = '<button class="btn btn-danger" type="nutton">Offline</button>';
+		    //$sitios[$i][3] = '<button class="btn btn-danger">Offline</button>';
+		    if($offline==5){
+		    try{
+                    $to_name = 'OrbitWeb';
+                    $to_email = 'dev@orbitweb.ca';
+                    $data = array('name'=>'OrbitWeb', 'body' => 'Algun sitio esta caido, revirsar ahora mismo!.');
+                    $mail_status =  Mail::send('Email.email', $data, function($message) use ($to_name, $to_email) {
+                    $message->to($to_email, $to_name)
+                    ->subject('Monitoreo de Sitios');
+                    $message->from('dev@orbitweb.ca','Monitoreo de Sitios');
+                    });
+                    //If error from Mail::send
+
+                }
+                catch(\Exception $e){
+                     //Get error here
+                   print $e->getMessage();
+                    exit;
+		}
+		$offline=0;
+		    }else{
+			    $offline++;
+		    }
+	    }
             $i++;
-        }
-
-        //correo
-        if( $offline ==0)
-        {
-            
-        }
-
-
+	    
+	}
         echo ' <table id="example1" class="table table-bordered table-striped">
         <thead>
             <tr>
@@ -146,4 +147,4 @@ class MonitorController extends Controller
 
         // return view("catalogo.sitio.index");
     }
-}
+    }

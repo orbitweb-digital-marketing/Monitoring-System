@@ -47,9 +47,9 @@
                                             <td><?php echo $sitios[$i][1];  ?></td>
                                             <td><?php echo $sitios[$i][2];  ?></td>
                                             <td align="center"><?php if ($sitios[$i][3] == 1) {  ?>
-                                                    <button class="btn btn-success">on line</button>
+                                                    <button type="button" class="btn btn-success">Online</button>
                                                 <?php } else {  ?>
-                                                    <button class="btn btn-danger">off line</button>
+                                                    <button type="button" class="btn btn-danger">Offline</button>
 
                                                 <?php }  ?>
                                             </td>
@@ -86,8 +86,8 @@
             $.ajax({
                 type: "get",
                 url: "monitor/load/1",
-                data: {},
-                success: function(data) {
+		data:{},
+		success: function(data) {
                     console.log(data);
                     $('#response').html(data);
 
@@ -96,7 +96,7 @@
             });
 
 
-        }, 5000);
+        }, 60000);
 
 
     });

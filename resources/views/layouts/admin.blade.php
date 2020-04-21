@@ -14,7 +14,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
-    <link rel="apple-touch-icon" href="{{asset('img/apple-touch-icon.png')}}">
+    <link rel="apple-touch-icon" href="{{asset('img/orbit.png')}}">
     <link rel="shortcut icon" href="{{asset('img/favicon.ico')}}">
 
     <link rel="stylesheet" href="{{asset('datatables/css/dataTables.bootstrap.min.css')}}">

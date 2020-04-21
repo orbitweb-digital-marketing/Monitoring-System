@@ -15,10 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('catalogo/sitio', 'SitioController');
-Route::resource('/monitor', 'MonitorController');
-Route::get('monitor/load/1', 'MonitorController@load');
-
 Auth::routes();
+Route::group(['middleware' => ['auth']], function(){
+	Route::get('/home', 'HomeController@index')->name('home');
+	Route::resource('catalogo/sitio', 'SitioController');
+	Route::resource('/monitor', 'MonitorController');
+	Route::get('monitor/load/1', 'MonitorController@load');
 
-Route::get('/home', 'HomeController@index')->name('home');
+});
