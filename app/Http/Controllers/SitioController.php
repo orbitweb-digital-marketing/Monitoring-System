@@ -33,7 +33,9 @@ class SitioController extends Controller
     {
         $sitio = new Sitio;
         $sitio->nombre = $request->get('nombre');
-        $sitio->url = $request->get('url');
+	$sitio->url = $request->get('url');
+	$sitio->server = $request->get('server');
+	$sitio->maintenace = $request->get('mantenimiento');
         $sitio->save();
 
         alert()->success('El registro ha sido agregado correctamente');
@@ -52,7 +54,9 @@ class SitioController extends Controller
     {
         $sitio = Sitio::findOrFail($id);
         $sitio->nombre = $request->get('nombre');
-        $sitio->url = $request->get('url');
+	$sitio->url = $request->get('url');
+	$sitio->server = $request->get('server');
+	$sitio->maintenace = $request->get('mantenimiento');
         $sitio->update();
         alert()->info('El registro ha sido modificado correctamente');
         return redirect('catalogo/sitio/' . $id . '/edit');

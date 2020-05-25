@@ -22,9 +22,17 @@
             	<input type="text" name="nombre" class="form-control" value="{{$sitio->nombre}}" placeholder="Descripción...">
 			</div>
 			
-			<div class="form-group">
+		<div class="form-group">
             	<label for="Descripcion">Url</label>
             	<input type="text" name="url" class="form-control" value="{{$sitio->url}}" placeholder="url...">
+	    </div>
+		<div class="form-group">
+                <label for="Descripcion">Servidor</label>
+                <input type="text" name="server" class="form-control" value="{{$sitio->server}}" placeholder="Servidor Alojado">
+	    </div>
+		<div class="form-group">
+                <label for="Descripcion">Ultimo Mantenimiento</label>
+                <input type="date" name="mantenimiento" class="form-control" value="{{$sitio->maintenace}}" placeholder="Ultimo Mantenimiento">
             </div>
             <div class="form-group">
             	<button class="btn btn-primary" type="submit">Guardar</button>

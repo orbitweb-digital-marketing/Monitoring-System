@@ -15,7 +15,9 @@ class Sitio extends Model
 
     protected $fillable = [
         'nombre',
-        'url'
+	'url',
+	'server',
+	'maintenace'
     ];
 
     protected $guarded = [];

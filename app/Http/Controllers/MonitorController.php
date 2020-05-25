@@ -19,8 +19,8 @@ class MonitorController extends Controller
         if ($request) {
 
             function url_test($url)
-            {
-                $timeout = 10;
+	    {
+		    $timeout = 20;
                 $ch = curl_init();
                 curl_setopt($ch, CURLOPT_URL, $url);
                 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -29,7 +29,21 @@ class MonitorController extends Controller
                 $http_respond = trim(strip_tags($http_respond));
                 $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
                 if (($http_code == "200") || ($http_code == "302") || ($http_code == "301")) {
-                    return true;
+                    if ($http_code == "301") {
+                        $ch = curl_init();
+                        curl_setopt($ch, CURLOPT_URL, $url);
+                        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                        curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+                        $http_respond = curl_exec($ch);
+                        $http_respond = trim(strip_tags($http_respond));
+                        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                        if ($http_code == "301") {
+                            return true;
+                        }
+                    }else{
+                        return true;
+                    }
+
                 } else {
                     // return $http_code;, possible too
                     return false;
@@ -45,11 +59,13 @@ class MonitorController extends Controller
             foreach ($query as $obj) {
                 $sitios[$i][1] = $obj->nombre;
                 $sitios[$i][2] = $obj->url;
+		$sitios[$i][3] = $obj->server;
+		$sitios[$i][4] = $obj->maintenace;
 
                 if (url_test($obj->url) == true)
-                    $sitios[$i][3] = 1;
+                    $sitios[$i][5] = 1;
                 else {
-                    $sitios[$i][3] = 0;
+                    $sitios[$i][5] = 0;
                 }
                 $i++;
             }
@@ -67,15 +83,23 @@ class MonitorController extends Controller
 
         function url_test($url)
         {
-            $timeout = 10;
+            $timeout = 20;
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
-            $http_respond = curl_exec($ch);
+	    curl_setopt($ch, CURLOPT_TIMEOUT, $timeout);
+	    $http_respond = curl_exec($ch);
             $http_respond = trim(strip_tags($http_respond));
             $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             if (($http_code == "200") || ($http_code == "302") || ($http_code == "301")) {
+                if ($http_code == "301"){
+                    $http_respond = curl_exec($ch);
+                    $http_respond = trim(strip_tags($http_respond));
+                    $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+                    if (($http_code == "200") || ($http_code == "302") || ($http_code == "301")){
+                         return true;
+                     }
+                }
                 return true;
             } else {
                 // return $http_code;, possible too
@@ -91,18 +115,20 @@ class MonitorController extends Controller
 	$i = 1;
         foreach ($query as $obj) {
             $sitios[$i][1] = $obj->nombre;
-            $sitios[$i][2] = $obj->url;
+	    $sitios[$i][2] = $obj->url;
+	    $sitios[$i][3] = $obj->server;
+	    $sitios[$i][4] = $obj->maintenace;
 	$offline=5;
             if (url_test($obj->url) == true)
-                $sitios[$i][3] = '<button class="btn btn-success" type="button">Online</button>';
+                $sitios[$i][5] = '<a href="" target="_blank"><button class="btn btn-success" type="button">Online</button></a>';
             else {
-		    $sitios[$i][3] = '<button class="btn btn-danger" type="nutton">Offline</button>';
+		    $sitios[$i][5] = '<a href="" target="_blank"><button class="btn btn-danger" type="nutton">Offline</button></a>';
 		    //$sitios[$i][3] = '<button class="btn btn-danger">Offline</button>';
 		    if($offline==5){
 		    try{
                     $to_name = 'OrbitWeb';
                     $to_email = 'dev@orbitweb.ca';
-                    $data = array('name'=>'OrbitWeb', 'body' => 'Algun sitio esta caido, revirsar ahora mismo!.');
+                    $data = array('name'=> $obj->nombre , 'body' => 'Revisar ahora mismo!.');
                     $mail_status =  Mail::send('Email.email', $data, function($message) use ($to_name, $to_email) {
                     $message->to($to_email, $to_name)
                     ->subject('Monitoreo de Sitios');
@@ -129,7 +155,9 @@ class MonitorController extends Controller
             <tr>
                 <th>No</th>
                 <th>Sistema</th>
-                <th>URL</th>
+		<th>URL</th>
+		<th>Servidor</th>
+		<th>Mantenimiento</th>
                 <th>Estado</th>
             </tr>
         </thead>
@@ -139,7 +167,9 @@ class MonitorController extends Controller
                 <td align="center">' . $i . '</td>
                 <td>' . $sitios[$i][1] . '</td>
                 <td>' . $sitios[$i][2] . '</td>
-                <td>' . $sitios[$i][3] . '</td>
+		<td>' . $sitios[$i][3] . '</td>
+		<td>' . $sitios[$i][4] . '</td>
+		<td>' . $sitios[$i][5] . '</td>
             </tr> </tbody>';
         }
         echo '</table>';

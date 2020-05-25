@@ -16,6 +16,8 @@
 					<th>Id</th>
 					<th>Nombre</th>
 					<th>Url</th>
+					<th>Servidor</th>
+					<th>Ultimo Mantenimiento</th>
 					<th>Opciones</th>
 				</thead>
 				@foreach ($sitios as $obj)
@@ -23,6 +25,8 @@
 					<td>{{ $obj->id}}</td>
 					<td>{{ $obj->nombre}}</td>
 					<td>{{ $obj->url}}</td>
+					<td>{{ $obj->server}}</td>
+					<td>{{ $obj->maintenace}}</td>
 					<td>
 						<a href="{{URL::action('SitioController@edit',$obj->id)}}"><button class="btn btn-info">Editar</button></a>
 						<a href="" data-target="#modal-delete-{{$obj->id}}" data-toggle="modal"><button class="btn btn-danger">Eliminar</button></a>

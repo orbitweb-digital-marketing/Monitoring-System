@@ -33,7 +33,9 @@
                             <tr>
                                 <th>No</th>
                                 <th>Sistema</th>
-                                <th>URL</th>
+				<th>URL</th>
+				<th>Servidor</th>
+				<th>Ultimo Mantenimiento</th>
                                 <th>Estado</th>
                             </tr>
                         </thead>
@@ -45,11 +47,13 @@
                                         <tr>
                                             <td align="center"><?php echo $i;  ?></td>
                                             <td><?php echo $sitios[$i][1];  ?></td>
-                                            <td><?php echo $sitios[$i][2];  ?></td>
-                                            <td align="center"><?php if ($sitios[$i][3] == 1) {  ?>
-                                                    <button type="button" class="btn btn-success">Online</button>
+					    <td><?php echo $sitios[$i][2];  ?></td>
+					    <td><?php echo $sitios[$i][3];  ?></td>
+					    <td><?php echo $sitios[$i][4];  ?></td>
+                                            <td align="center"><?php if ($sitios[$i][5] == 1) {  ?>
+                                                    <a target="_blank" href="{{$sitios[$i][2]}}"><button type="button" class="btn btn-success">Online</button></a>
                                                 <?php } else {  ?>
-                                                    <button type="button" class="btn btn-danger">Offline</button>
+                                                    <a target="_blank" href="{{$sitios[$i][2]}}"><button type="button" class="btn btn-danger">Offline</button></a>
 
                                                 <?php }  ?>
                                             </td>

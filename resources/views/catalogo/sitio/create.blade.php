@@ -24,6 +24,14 @@
 			<div class="form-group">
             	<label for="Descripcion">Url</label>
             	<input type="text" name="url" class="form-control" placeholder="url...">
+	    </div>
+		<div class="form-group">
+                <label for="Descripcion">Servidor</label>
+                <input type="text" name="server" class="form-control" placeholder="Servidor Alojado">
+	    </div>
+		<div class="form-group">
+                <label for="Descripcion">Ultimo Mantenimiento</label>
+                <input type="date" name="mantenimiento" class="form-control" placeholder="Ultimo Mantenimiento">
             </div>
             <div class="form-group">
             	<button class="btn btn-primary" type="submit">Guardar</button>

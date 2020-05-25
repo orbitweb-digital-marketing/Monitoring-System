@@ -84,10 +84,9 @@ return [
     |
     */
 
-    'username' => env(''),
+	'username' => env('MAIL_USERNAME'),
 
-    'password' => env(''),
-
+	'password' => env('MAIL_PASSWORD'),
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path
@@ -121,3 +120,4 @@ return [
     ],
 
 ];
+
