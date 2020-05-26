@@ -99,7 +99,7 @@ class TestingCrom extends Command
                 }
                 else {
                     $to_name = 'OrbitWeb';
-                    $to_email = 'brian@orbitweb.ca';
+                    $to_email = 'dev@orbitweb.ca';
                     $data = array('name'=> $obj->nombre , 'body' => 'Revisar ahora mismo!.');
                     $mail_status =  Mail::send('Email.email', $data, function($message) use ($to_name, $to_email) {
                         $message->to($to_email, $to_name)

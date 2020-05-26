@@ -39,7 +39,7 @@
 
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top" role="navigation">
-          <!-- Sidebar toggle button-->
+	  <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Navegación</span>
           </a>
@@ -96,7 +96,14 @@
                 <span>Sitios</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
-            </li>                        
+	    </li>
+	   <li class="treeview">
+		<a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ __('Logout') }} </a>
+     		<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        		@csrf
+		</form>
+                 <i class="fa fa-angle-left pull-right"></i>
+            </li>			
           </ul>
         </section>
         <!-- /.sidebar -->
